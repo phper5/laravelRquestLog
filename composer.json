@@ -1,31 +1,29 @@
 {
-  "name": "softdd/requestlog",
-  "description": "记录用户的log",
+    "name": "softdd/requestlog",
+    "description": "记录用户请求的log",
     "keywords": ["request log", "laravel", "softdd"],
     "license": "MIT",
-  "authors": [
-    {
-      "name": "coder5",
-      "email": "coder5@qq.com"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "SoftDD\\RequestLog\\": "src/"
-    }
-  },
-  "require": {
-      "php": ">=7.0.0",
-      "laravel/framework": "^7|^8"
-  },
-  "extra": {
-    "laravel": {
-      "providers": [
-          "SoftDD\\RequestLog\\RequestLogServiceProvider"
-      ]
-    }
-  },
+    "authors": [
+        {
+            "name": "diandisoft",
+            "email": "coder5@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SoftDD\\RequestLog\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "laravel/framework": "^7|^8"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SoftDD\\RequestLog\\RequestLogServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
-    "prefer-stable": true
 }
-
