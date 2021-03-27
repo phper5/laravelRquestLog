@@ -1,17 +1,19 @@
-# SoftDD/RequestLog
+# softdd/requestlog
 记录用户请求请求
 # Installation
-- 复制本扩展到根目录的packages下，
- - 修改composer.json 增加： 
- ```   
- "psr-4": {
-             "DiandiSoft\\ApiHeader\\": "packages/diandi-apiheader/src/"
-         }
-```
-  - 执行
-  ```
-  composer dumpautoload
-  ```
-  在Kernel中增加中间件:
-  
-  \DiandiSoft\ApiHeader\ApiHeader::class,
+<pre>
+return [
+    'logSql'=>true,
+    'addRunTimeHeader'=>true,
+    'RunTimeHeader'=>'X-RUNTIME',
+    'logInput'=>false,
+    'logFile'=>'request',
+    'message'=>'request'
+];
+</pre>
+- logSql 是否记录sql
+- addRunTimeHeader  是否添加运行时间到header
+- RunTimeHeader  运行时间的header标签
+- logInput 是否记录php://input
+- logFile log文件
+- message  消息
