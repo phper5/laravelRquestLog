@@ -1,0 +1,24 @@
+{
+  "name": "softdd/requestlog",
+  "description": "记录用户的log",
+  "authors": [
+    {
+      "name": "coder5",
+      "email": "coder5@qq.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SoftDD\\RequestLog\\": "src/"
+    }
+  },
+  "require": {
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+      ]
+    }
+  }
+}
+
