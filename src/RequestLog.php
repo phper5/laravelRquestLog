@@ -51,7 +51,6 @@ class RequestLog
         $data['response'] = [
             'status' => $response->getStatusCode(),
             'header' => str_replace("\r\n", ';;', $response->headers),
-            'body' => $response->getContent(),
         ];
         if ($request->expectsJson()){
             $data['response']['body'] = $response->getContent();
