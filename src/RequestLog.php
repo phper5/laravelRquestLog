@@ -19,7 +19,7 @@ class RequestLog
 {
     public function handle($request, Closure $next)
     {
-        $logSql = config('dd-requestLog.logSql',false);
+        $logSql = config('softDDRequestLog.logSql',false);
         if ($logSql){
             DB::connection()->enableQueryLog();
         }
@@ -33,8 +33,8 @@ class RequestLog
             return $response; //to check!
         }
         $runTime = $endTime - $startTime;
-        if (config('dd-requestLog.addRunTimeHeader',false)){
-            $response->header(config('dd-requestLog.RunTimeHeader','X-RUNTIME'), $runTime);
+        if (config('softDDRequestLog.addRunTimeHeader',false)){
+            $response->header(config('softDDRequestLog.RunTimeHeader','X-RUNTIME'), $runTime);
         }
 
         $data = ['runTime' => $runTime];
@@ -45,7 +45,7 @@ class RequestLog
             'header' => $request->headers->all(),
             'params' => $request->all()
         ];
-        if (config('dd-requestLog.logInput',false)){
+        if (config('softDDRequestLog.logInput',false)){
             $data['request']['input'] = file_get_contents('php://input');
         }
         $data['response'] = [
@@ -60,10 +60,10 @@ class RequestLog
             $data['sql'] = DB::getQueryLog();
             DB::flushQueryLog();
         }
-        if ($logChannel = config('dd-requestLog.logFile')) {
-            Log::channel($logChannel)->info(config('dd-requestLog.message','request'), $data);
+        if ($logChannel = config('softDDRequestLog.logFile')) {
+            Log::channel($logChannel)->info(config('softDDRequestLog.message','request'), $data);
         }else{
-            Log::info(config('dd-requestLog.message','request'), $data);
+            Log::info(config('softDDRequestLog.message','request'), $data);
         }
         return $response;
     }

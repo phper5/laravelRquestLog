@@ -10,8 +10,8 @@ class RequestLogServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $source = realpath($raw = __DIR__.'/../config/dd-requestLog.php') ?: $raw;
-        $this->publishes([$source => config_path('dd-requestLog.php')]);
+        $source = realpath($raw = __DIR__.'/../config/ddRequestLog.php') ?: $raw;
+        $this->publishes([$source => config_path('ddRequestLog.php')]);
     }
     /**
      * Register the service provider.
