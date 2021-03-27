@@ -1,6 +1,8 @@
 {
   "name": "softdd/requestlog",
   "description": "记录用户的log",
+    "keywords": ["request log", "laravel", "softdd"],
+    "license": "MIT",
   "authors": [
     {
       "name": "coder5",
