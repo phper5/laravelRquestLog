@@ -52,7 +52,7 @@ class RequestLog
             'status' => $response->getStatusCode(),
             'header' => str_replace("\r\n", ';;', $response->headers),
         ];
-        if ($request->expectsJson()){
+        if ($request->expectsJson()|| $request->input('x_log')){
             $data['response']['body'] = $response->getContent();
         }
         if ($logSql){
