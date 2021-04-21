@@ -34,7 +34,16 @@ class RequestLog
         }
         $runTime = $endTime - $startTime;
         if (config('softDDRequestLog.addRunTimeHeader',false)){
-            $response->header(config('softDDRequestLog.RunTimeHeader','X-RUNTIME'), $runTime);
+            $responseHeader = [];
+            $responseBody = is_scalar($response)?$response:'';
+            $responseStatus = 200;
+            if ($response instanceof  Response)
+            {
+                $response->header(config('softDDRequestLog.RunTimeHeader','X-RUNTIME'), $runTime);
+                $responseHeader = $response->headers;
+                $responseBody = $response->getContent();
+                $responseStatus = $response->getContent();
+            }
         }
 
         $data = ['runTime' => $runTime];
@@ -49,11 +58,11 @@ class RequestLog
             $data['request']['input'] = file_get_contents('php://input');
         }
         $data['response'] = [
-            'status' => $response->getStatusCode(),
-            'header' => str_replace("\r\n", ';;', $response->headers),
+            'status' => $responseStatus,
+            'header' => str_replace("\r\n", ';;', $responseHeader),
         ];
-        if (config('softDDRequestLog.logAll',false) || $request->expectsJson()|| $request->input('x_log')){
-            $data['response']['body'] = $response->getContent();
+        if (config('softDDRequestLog.logAll',false)||$request->expectsJson()|| $request->input('x_log')){
+            $data['response']['body'] = $responseBody;
         }
         if ($logSql){
             $data['sql'] = DB::getQueryLog();
