@@ -3,7 +3,7 @@
 ## Installation
 ```bash
 composer require softdd/requestlog
-php artisan vendor:publish --provider="SoftDD\RequestLog\RequestLogServiceProvider
+php artisan vendor:publish --provider="SoftDD\RequestLog\RequestLogServiceProvider"
 ```
 ## Usage
 添加到中间件，请选择合适的groups
